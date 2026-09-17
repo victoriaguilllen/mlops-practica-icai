@@ -31,7 +31,11 @@ with mlflow.start_run():
     joblib.dump(model, 'model.pkl')
 
     # Registrar el modelo con MLflow
-    mlflow.sklearn.log_model(model, "random-forest-model")
+    mlflow.sklearn.log_model(
+    model,
+        "random-forest-model",
+        serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE
+    )
 
     # Registrar parámetros y métricas
     mlflow.log_param("n_estimators", 100)
