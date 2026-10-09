@@ -1,7 +1,10 @@
 scikit-learn==1.3.0
 pandas==2.2.2
 numpy==1.26.4
-dvc==3.32.0
+dvc
 mlflow
 matplotlib
 seaborn
+Flask
+streamlit
+requests
