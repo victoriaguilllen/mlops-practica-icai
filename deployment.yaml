@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-api-deployment
+  labels:
+    app: mlops-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlops-api
+  template:
+    metadata:
+      labels:
+        app: mlops-api
+    spec:
+      containers:
+      - name: mlops-api
+        image: gcr.io/project-e264cd75-688c-46d1-ab0/mlops-api:latest
+        ports:
+        - containerPort: 5000
