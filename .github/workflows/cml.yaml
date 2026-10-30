@@ -125,7 +125,11 @@ jobs:
           docker build -t gcr.io/${{ vars.GCP_PROJECT_ID }}/mlops-api:latest .
           docker push gcr.io/${{ vars.GCP_PROJECT_ID }}/mlops-api:latest
 
+      # Evita el fallo de gcloud config-helper con claves JSON:
+      # el plugin de GKE usa las credenciales exportadas por el paso auth
       - name: Deploy to GKE
+        env:
+          CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS: 'true'
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
