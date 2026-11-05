@@ -52,8 +52,10 @@ def train_model(n_estimators):
         # Registrar el modelo con MLflow
         mlflow.sklearn.log_model(
             model,
-            "random-forest-model",
-            serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE,
+            name="random-forest-model",
+            skops_trusted_types=[
+                "sklearn.tree._tree.Tree"
+            ]
         )
 
         # Registrar parámetros y métricas
